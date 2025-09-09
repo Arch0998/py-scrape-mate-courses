@@ -16,7 +16,7 @@ class Course:
 COURSE_FIELDS = [field.name for field in fields(Course)]
 
 
-def parse_single_course(card) -> Course:
+def parse_single_course(card: BeautifulSoup) -> Course:
     content = card.find("div", class_="ProfessionCard_content__mPiVi")
     return Course(
         name=content.find(
@@ -50,7 +50,7 @@ def write_courses_to_csv(courses: list[Course]) -> None:
         writer.writerows([astuple(course) for course in courses])
 
 
-def main():
+def main() -> None:
     courses = get_all_courses()
     write_courses_to_csv(courses)
 
